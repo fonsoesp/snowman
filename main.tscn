@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1ijwhtyepd44"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_gxeh5"]
+[ext_resource type="Texture2D" uid="uid://bxrgbo8uwt2s7" path="res://snowman.png" id="2_6busu"]
+[ext_resource type="Texture2D" uid="uid://c2ke2jwcx5vd1" path="res://magma.png" id="3_hk3h2"]
+[ext_resource type="Texture2D" uid="uid://c17j1ysg5gh04" path="res://sol.png" id="3_s0od8"]
+[ext_resource type="Texture2D" uid="uid://brejo8mcdd2a3" path="res://Montain.png" id="5_8j07g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxapm"]
+radius = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aeb2g"]
+size = Vector2(431.499, 18.8795)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c5xdi"]
+radius = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85h0m"]
+size = Vector2(94, 26)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(222, 409)
+script = ExtResource("1_gxeh5")
+
+[node name="Snowman" type="Sprite2D" parent="Player"]
+position = Vector2(-1.69803, -9.53568)
+scale = Vector2(0.0648177, 0.0648177)
+texture = ExtResource("2_6busu")
+
+[node name="SnowmanCollisionShape" type="CollisionShape2D" parent="Player"]
+position = Vector2(-0.396057, -0.953125)
+shape = SubResource("CircleShape2D_nxapm")
+
+[node name="Lava" type="Area2D" parent="."]
+position = Vector2(-168, -688)
+scale = Vector2(1.00348, 0.996748)
+
+[node name="LavaCollisionShape" type="CollisionShape2D" parent="Lava"]
+position = Vector2(384.164, 1450.12)
+shape = SubResource("RectangleShape2D_aeb2g")
+
+[node name="LavaSprite" type="Sprite2D" parent="Lava"]
+position = Vector2(382.669, 1446.7)
+scale = Vector2(0.432496, 0.147502)
+texture = ExtResource("3_hk3h2")
+
+[node name="Sol" type="StaticBody2D" parent="."]
+position = Vector2(21, 418)
+
+[node name="SolCollisionShape" type="CollisionShape2D" parent="Sol"]
+shape = SubResource("CircleShape2D_c5xdi")
+
+[node name="SolSprite" type="Sprite2D" parent="Sol"]
+position = Vector2(1, 0)
+scale = Vector2(0.0632653, 0.0632653)
+texture = ExtResource("3_s0od8")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(183, 596)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(33, 159)
+shape = SubResource("RectangleShape2D_85h0m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(33, 128)
+scale = Vector2(0.185547, 0.185547)
+texture = ExtResource("5_8j07g")
