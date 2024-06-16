@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcoedetvdauqm"]
+
+[ext_resource type="Texture2D" uid="uid://ceocnihrm1ajs" path="res://assets/Montain.png" id="1_31qv2"]
+
+[node name="Mountain" type="Node2D"]
+scale = Vector2(0.41, 0.41)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-53, -143.7, -53, -140.7, -8.10001, -50, -6.89999, -50, 17, -48.9, 62, -48, 84, -73.5, 88, -72.1, 88, -69.7, 149.7, 43, 151, 43, 197, 44, 197, 47.2, 254.5, 143, 252.7, 146, 250, 146, -254, 148, -254, 143.8, -251.5, 129, -249.7, 129, -185.8, 9, -183.4, 9, -162, 6.29999, -85.7, -126, -84.3, -126, -64, -145.3, -64, -146.7, -61, -148.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_31qv2")
