@@ -1,70 +1,125 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1ijwhtyepd44"]
+[gd_scene load_steps=15 format=3 uid="uid://b1ijwhtyepd44"]
 
-[ext_resource type="Script" path="res://script/Player.gd" id="1_gxeh5"]
+[ext_resource type="Script" path="res://script/PositionPlayerOnMouse.gd" id="1_0qo8a"]
+[ext_resource type="Texture2D" uid="uid://s5pvrticsu80" path="res://assets/yellow_body_square.png" id="1_vxegw"]
 [ext_resource type="Texture2D" uid="uid://e1wt5iehda18" path="res://assets/snowman.png" id="2_6busu"]
+[ext_resource type="Texture2D" uid="uid://c84tn60ga1gd4" path="res://assets/paint_drips_a.svg" id="2_6sgjx"]
 [ext_resource type="Texture2D" uid="uid://cqckmnrb1yhhk" path="res://assets/magma.png" id="3_hk3h2"]
 [ext_resource type="Texture2D" uid="uid://cl4hqwgkyk1nc" path="res://assets/sol.png" id="3_s0od8"]
 [ext_resource type="Texture2D" uid="uid://ceocnihrm1ajs" path="res://assets/Montain.png" id="5_8j07g"]
+[ext_resource type="Script" path="res://script/GameOver.gd" id="7_jbtec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_migqf"]
+size = Vector2(76, 3)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nxapm"]
-radius = 13.0
+radius = 10.0499
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aeb2g"]
-size = Vector2(431.499, 18.8795)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vl3t5"]
+radius = 13.0384
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e6f2r"]
+rough = true
+absorbent = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c5xdi"]
 radius = 20.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_85h0m"]
-size = Vector2(94, 26)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aeb2g"]
+size = Vector2(431.499, 18.8795)
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(222, 409)
-script = ExtResource("1_gxeh5")
+[node name="paredes" type="StaticBody2D" parent="."]
+position = Vector2(-168, -688)
+scale = Vector2(1.00348, 0.996748)
 
-[node name="Snowman" type="Sprite2D" parent="Player"]
+[node name="left" type="Sprite2D" parent="paredes"]
+position = Vector2(142.504, 1036.37)
+scale = Vector2(1, 11.8887)
+texture = ExtResource("1_vxegw")
+
+[node name="CollisionPolygon2Dleft" type="CollisionPolygon2D" parent="paredes"]
+position = Vector2(142.504, 1036.37)
+scale = Vector2(1, 11.8887)
+polygon = PackedVector2Array(41.8543, -30.9705, 40, 37, -40, 37, -40.8578, -30.9705)
+
+[node name="right" type="Sprite2D" parent="paredes"]
+position = Vector2(626.819, 1054.36)
+scale = Vector2(1, 11.7867)
+texture = ExtResource("1_vxegw")
+
+[node name="CollisionPolygon2Dright" type="CollisionPolygon2D" parent="paredes"]
+position = Vector2(626.819, 1035.37)
+scale = Vector2(1, 11.8887)
+polygon = PackedVector2Array(41.8543, -30.9705, 40, 37, -40, 37, -40.8578, -30.9705)
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(177, 540)
+script = ExtResource("1_0qo8a")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+scale = Vector2(0.358491, 0.19)
+texture = ExtResource("2_6sgjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_migqf")
+
+[node name="snowman" type="RigidBody2D" parent="."]
+position = Vector2(249, 661)
+mass = 10.0
+gravity_scale = 0.2
+
+[node name="snowmanSprite" type="Sprite2D" parent="snowman"]
 position = Vector2(-1.69803, -9.53568)
 scale = Vector2(0.0648177, 0.0648177)
 texture = ExtResource("2_6busu")
 
-[node name="SnowmanCollisionShape" type="CollisionShape2D" parent="Player"]
-position = Vector2(-0.396057, -0.953125)
+[node name="SnowmanCollisionShape_head" type="CollisionShape2D" parent="snowman"]
+position = Vector2(-1, -20)
 shape = SubResource("CircleShape2D_nxapm")
 
-[node name="Lava" type="Area2D" parent="."]
-position = Vector2(-168, -688)
-scale = Vector2(1.00348, 0.996748)
+[node name="SnowmanCollisionShape_body" type="CollisionShape2D" parent="snowman"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_vl3t5")
+one_way_collision_margin = 10.0
 
-[node name="LavaCollisionShape" type="CollisionShape2D" parent="Lava"]
-position = Vector2(384.164, 1450.12)
-shape = SubResource("RectangleShape2D_aeb2g")
+[node name="mountain" type="StaticBody2D" parent="."]
+position = Vector2(183, 594)
+physics_material_override = SubResource("PhysicsMaterial_e6f2r")
 
-[node name="LavaSprite" type="Sprite2D" parent="Lava"]
-position = Vector2(382.669, 1446.7)
-scale = Vector2(0.432496, 0.147502)
-texture = ExtResource("3_hk3h2")
+[node name="montainSprite" type="Sprite2D" parent="mountain"]
+position = Vector2(55, 109)
+scale = Vector2(0.426984, 0.426984)
+texture = ExtResource("5_8j07g")
 
-[node name="Sol" type="StaticBody2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mountain"]
+position = Vector2(55, 109)
+scale = Vector2(0.426984, 0.426984)
+polygon = PackedVector2Array(-53, -143.7, -53, -140.7, -8.10001, -50, 9.36804, -46.8402, 44.4981, -46.8402, 77.2863, -79.6283, 88, -72.1, 88, -69.7, 149.7, 43, 151, 43, 197, 44, 197, 47.2, 254.5, 143, 252.7, 146, 250, 146, -254, 148, -254, 143.8, -251.5, 129, -249.7, 129, -185.8, 9, -183.4, 9, -162, 6.29999, -85.7, -126, -84.3, -126, -64, -145.3, -64, -146.7, -61, -148.5)
+
+[node name="enemigos" type="StaticBody2D" parent="."]
 position = Vector2(21, 418)
 
-[node name="SolCollisionShape" type="CollisionShape2D" parent="Sol"]
-shape = SubResource("CircleShape2D_c5xdi")
-
-[node name="SolSprite" type="Sprite2D" parent="Sol"]
+[node name="solSprite1" type="Sprite2D" parent="enemigos"]
 position = Vector2(1, 0)
 scale = Vector2(0.0632653, 0.0632653)
 texture = ExtResource("3_s0od8")
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(183, 596)
+[node name="sol1CollisionShape" type="CollisionShape2D" parent="enemigos"]
+shape = SubResource("CircleShape2D_c5xdi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(29, 159)
-shape = SubResource("RectangleShape2D_85h0m")
+[node name="lava" type="StaticBody2D" parent="."]
+position = Vector2(-168, -688)
+scale = Vector2(1.00348, 0.996748)
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-position = Vector2(33, 128)
-scale = Vector2(0.185547, 0.185547)
-texture = ExtResource("5_8j07g")
+[node name="LavaSprite" type="Sprite2D" parent="lava"]
+position = Vector2(382.669, 1446.7)
+scale = Vector2(0.432496, 0.147502)
+texture = ExtResource("3_hk3h2")
+
+[node name="LavaCollisionShape" type="CollisionShape2D" parent="lava"]
+position = Vector2(384.164, 1450.12)
+shape = SubResource("RectangleShape2D_aeb2g")
+script = ExtResource("7_jbtec")
