@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://m13qs6em321o"]
+[gd_scene load_steps=12 format=3 uid="uid://m13qs6em321o"]
 
 [ext_resource type="Texture2D" uid="uid://c5vvm8rnfatlo" path="res://assets/kenney_platformer-art-pixel-redux/Tilemap/tilemap_packed.png" id="1_4jtbv"]
 [ext_resource type="PackedScene" uid="uid://pugj2sce62mc" path="res://scene/SnowMan.tscn" id="2_2x2ci"]
@@ -1465,7 +1465,10 @@ texture_region_size = Vector2i(21, 21)
 sources/1 = SubResource("TileSetAtlasSource_4yawj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3g3xv"]
-size = Vector2(255, 29.5)
+size = Vector2(509, 67.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nro3h"]
+size = Vector2(257, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahfhi"]
 radius = 79.3095
@@ -1493,20 +1496,24 @@ layer_2/name = "Exit"
 layer_2/z_index = 100
 layer_2/tile_data = PackedInt32Array(6, 720897, 18, 7, 786433, 18, 8, 851969, 18, 65544, 720897, 19, 65543, 786433, 19, 65542, 851969, 19, 131076, 524289, 17, 131077, 589825, 17, 131078, 524289, 17, 131079, 589825, 17, 131080, 589825, 17)
 
+[node name="SnowMan" parent="." instance=ExtResource("2_2x2ci")]
+position = Vector2(231, 579)
+disable_mode = 1
+
 [node name="Mountain" parent="." instance=ExtResource("3_oj7eb")]
 position = Vector2(219, 649)
 
 [node name="lava" type="StaticBody2D" parent="."]
 
 [node name="collisions_lava" type="CollisionShape2D" parent="lava"]
-position = Vector2(213, 751.5)
+position = Vector2(216.5, 732.625)
 shape = SubResource("RectangleShape2D_3g3xv")
 
 [node name="collisions" type="StaticBody2D" parent="."]
 
-[node name="collisions_lava" type="CollisionShape2D" parent="collisions"]
-position = Vector2(313.5, 103.25)
-shape = SubResource("RectangleShape2D_3g3xv")
+[node name="collisions_house" type="CollisionShape2D" parent="collisions"]
+position = Vector2(312.5, 105)
+shape = SubResource("RectangleShape2D_nro3h")
 
 [node name="collisions_salida" type="CollisionShape2D" parent="collisions"]
 position = Vector2(361, 39)
@@ -1524,8 +1531,5 @@ shape = SubResource("RectangleShape2D_m6aiq")
 position = Vector2(220, -14)
 shape = SubResource("RectangleShape2D_m3iel")
 
-[node name="SnowMan" parent="." instance=ExtResource("2_2x2ci")]
-position = Vector2(231, 579)
-
-[node name="Node2D" parent="." instance=ExtResource("4_8jwx5")]
-position = Vector2(212, 77)
+[node name="PlayerBar" parent="." instance=ExtResource("4_8jwx5")]
+position = Vector2(178, 218)
