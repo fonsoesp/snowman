@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://pugj2sce62mc"]
+[gd_scene load_steps=6 format=3 uid="uid://pugj2sce62mc"]
 
+[ext_resource type="Script" path="res://script/snowMan.gd" id="1_14np7"]
 [ext_resource type="Texture2D" uid="uid://e1wt5iehda18" path="res://assets/snowman.png" id="1_crti4"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e44x6"]
-bounce = 4.0
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xgeqb"]
+friction = 0.0
+bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nc5k6"]
 radius = 21.095
@@ -12,16 +14,22 @@ radius = 21.095
 radius = 14.8661
 
 [node name="SnowMan" type="RigidBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_e44x6")
+physics_material_override = SubResource("PhysicsMaterial_xgeqb")
+lock_rotation = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_14np7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Snowman"]]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_crti4")
 
-[node name="CollisionShape2D_body" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D_body" type="CollisionShape2D" parent="." groups=["Snowman"]]
 position = Vector2(1, 13)
 shape = SubResource("CircleShape2D_nc5k6")
 
-[node name="CollisionShape2D_head" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D_head" type="CollisionShape2D" parent="." groups=["Snowman"]]
 position = Vector2(1, -14)
 shape = SubResource("CircleShape2D_fx17o")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

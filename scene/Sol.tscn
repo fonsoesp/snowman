@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bihpuyqlvrfpe"]
+
+[ext_resource type="Texture2D" uid="uid://cl4hqwgkyk1nc" path="res://assets/sol.png" id="1_xu7ys"]
+[ext_resource type="Script" path="res://scene/rayo.gd" id="2_6gdls"]
+[ext_resource type="Texture2D" uid="uid://dm0yiabedfwno" path="res://assets/rayo2.png" id="3_pt5oa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vlq2"]
+radius = 29.0689
+
+[node name="Sol" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0790816, 0.0790816)
+texture = ExtResource("1_xu7ys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4vlq2")
+
+[node name="Rayo" type="RigidBody2D" parent="." groups=["Enemigo"]]
+gravity_scale = 0.0
+lock_rotation = true
+freeze_mode = 1
+max_contacts_reported = 1
+contact_monitor = true
+linear_velocity = Vector2(150, 0)
+script = ExtResource("2_6gdls")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rayo"]
+position = Vector2(40, 1)
+polygon = PackedVector2Array(-10, -3, 11, 0, -10, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="Rayo"]
+position = Vector2(39, -1)
+scale = Vector2(0.108333, 0.108333)
+texture = ExtResource("3_pt5oa")

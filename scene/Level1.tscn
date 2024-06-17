@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://pugj2sce62mc" path="res://scene/SnowMan.tscn" id="2_2x2ci"]
 [ext_resource type="PackedScene" uid="uid://dcoedetvdauqm" path="res://scene/Mountain.tscn" id="3_oj7eb"]
 [ext_resource type="PackedScene" uid="uid://dljsuasfijoii" path="res://scene/PlayerBar.tscn" id="4_8jwx5"]
+[ext_resource type="PackedScene" uid="uid://bihpuyqlvrfpe" path="res://scene/Sol.tscn" id="5_nhjc7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4yawj"]
 texture = ExtResource("1_4jtbv")
@@ -1468,10 +1469,7 @@ sources/1 = SubResource("TileSetAtlasSource_4yawj")
 size = Vector2(509, 67.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nro3h"]
-size = Vector2(257, 32)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ahfhi"]
-radius = 79.3095
+size = Vector2(208, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6aiq"]
 size = Vector2(32, 790)
@@ -1494,30 +1492,30 @@ layer_1/z_index = 100
 layer_1/tile_data = PackedInt32Array(983040, 458753, 19, 983041, 524289, 19, 983042, 589825, 19, 983043, 655361, 19, 983044, 458753, 19, 983045, 524289, 19, 983046, 589825, 19, 983047, 655361, 19, 983048, 458753, 19, 917504, 458753, 18, 917505, 524289, 18, 917506, 589825, 18, 917507, 655361, 18, 917508, 458753, 18, 917509, 524289, 18, 917510, 589825, 18, 917511, 655361, 18, 917512, 458753, 18)
 layer_2/name = "Exit"
 layer_2/z_index = 100
-layer_2/tile_data = PackedInt32Array(6, 720897, 18, 7, 786433, 18, 8, 851969, 18, 65544, 720897, 19, 65543, 786433, 19, 65542, 851969, 19, 131076, 524289, 17, 131077, 589825, 17, 131078, 524289, 17, 131079, 589825, 17, 131080, 589825, 17)
+layer_2/tile_data = PackedInt32Array(6, 720897, 18, 7, 786433, 18, 8, 851969, 18, 65544, 720897, 19, 65543, 786433, 19, 65542, 851969, 19, 131077, 589825, 17, 131078, 524289, 17, 131079, 589825, 17, 131080, 589825, 17)
 
 [node name="SnowMan" parent="." instance=ExtResource("2_2x2ci")]
 position = Vector2(231, 579)
 disable_mode = 1
+collision_layer = 7
+collision_mask = 7
 
 [node name="Mountain" parent="." instance=ExtResource("3_oj7eb")]
 position = Vector2(219, 649)
 
-[node name="lava" type="StaticBody2D" parent="."]
+[node name="lava" type="StaticBody2D" parent="." groups=["Enemigo"]]
 
 [node name="collisions_lava" type="CollisionShape2D" parent="lava"]
 position = Vector2(216.5, 732.625)
 shape = SubResource("RectangleShape2D_3g3xv")
 
-[node name="collisions" type="StaticBody2D" parent="."]
+[node name="collisions" type="StaticBody2D" parent="." groups=["Collision"]]
+collision_layer = 3
+collision_mask = 3
 
 [node name="collisions_house" type="CollisionShape2D" parent="collisions"]
-position = Vector2(312.5, 105)
+position = Vector2(337, 105)
 shape = SubResource("RectangleShape2D_nro3h")
-
-[node name="collisions_salida" type="CollisionShape2D" parent="collisions"]
-position = Vector2(361, 39)
-shape = SubResource("CircleShape2D_ahfhi")
 
 [node name="Collision_left" type="CollisionShape2D" parent="collisions"]
 position = Vector2(-22, 382)
@@ -1533,3 +1531,14 @@ shape = SubResource("RectangleShape2D_m3iel")
 
 [node name="PlayerBar" parent="." instance=ExtResource("4_8jwx5")]
 position = Vector2(178, 218)
+
+[node name="salida" type="StaticBody2D" parent="." groups=["Salida"]]
+
+[node name="collisions_salida" type="CollisionPolygon2D" parent="salida" groups=["Salida"]]
+position = Vector2(361, 39)
+polygon = PackedVector2Array(-79, -2, -80, 49, 78, 49, 79, 1, 63, -25, 30, -43, -37, -43, -62, -28)
+
+[node name="Sol" parent="." groups=["Enemigo"] instance=ExtResource("5_nhjc7")]
+position = Vector2(16, 375)
+collision_layer = 2
+collision_mask = 2

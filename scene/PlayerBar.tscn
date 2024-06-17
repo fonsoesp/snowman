@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dljsuasfijoii"]
+[gd_scene load_steps=7 format=3 uid="uid://dljsuasfijoii"]
 
 [ext_resource type="Script" path="res://script/playerBar.gd" id="1_7ubtm"]
 [ext_resource type="Texture2D" uid="uid://c5vvm8rnfatlo" path="res://assets/kenney_platformer-art-pixel-redux/Tilemap/tilemap_packed.png" id="2_tu3fa"]
@@ -1463,19 +1463,32 @@ texture_region_size = Vector2i(21, 21)
 sources/1 = SubResource("TileSetAtlasSource_r5sxp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjj07"]
-size = Vector2(133, 42)
+size = Vector2(134, 39)
 
-[node name="PlayerBar" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yyqu7"]
+radius = 6.0
+height = 134.0
+
+[node name="PlayerBar" type="Node2D" groups=["PlayerBar"]]
 script = ExtResource("1_7ubtm")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["PlayerBar"]]
 tile_set = SubResource("TileSet_c7551")
 format = 2
 layer_0/tile_data = PackedInt32Array(65532, 524289, 2, 65533, 589825, 2, 65534, 524289, 2, 65535, 589825, 2, 0, 524289, 2, 1, 589825, 2, 2, 524289, 2, 3, 589825, 2)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["PlayerBar"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.5, 18)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["PlayerBar"]]
+position = Vector2(0, 16.5)
 shape = SubResource("RectangleShape2D_bjj07")
+one_way_collision = true
 one_way_collision_margin = 56.8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" groups=["PlayerBar"]]
+visible = false
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yyqu7")
+one_way_collision = true
+one_way_collision_margin = 0.0
