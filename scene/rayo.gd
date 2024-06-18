@@ -1,20 +1,18 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-var initial_position
+var speed = 200
+var original_position = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	initial_position = position
+	original_position = position
 	
-func _on_body_entered(body):
-	if body.is_in_group("Collision"):
-		self.position.x = 0
+func _physics_process(delta):
+	velocity = Vector2(speed, 0)
+	var collision = move_and_slide()
+	
+	if collision:
+		_on_collision()
 		
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass#self.position.x += rayVelocity;
-	#var test = JOY_AXIS_RIGHT_X
-	#if self.position.x == JOY_AXIS_RIGHT_X:
-		#self.position.x = 0;
+func _on_collision():
+	position = original_position

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://m13qs6em321o"]
+[gd_scene load_steps=14 format=3 uid="uid://m13qs6em321o"]
 
 [ext_resource type="Texture2D" uid="uid://c5vvm8rnfatlo" path="res://assets/kenney_platformer-art-pixel-redux/Tilemap/tilemap_packed.png" id="1_4jtbv"]
+[ext_resource type="Script" path="res://scene/Level1.gd" id="1_a61md"]
 [ext_resource type="PackedScene" uid="uid://pugj2sce62mc" path="res://scene/SnowMan.tscn" id="2_2x2ci"]
 [ext_resource type="PackedScene" uid="uid://dcoedetvdauqm" path="res://scene/Mountain.tscn" id="3_oj7eb"]
 [ext_resource type="PackedScene" uid="uid://dljsuasfijoii" path="res://scene/PlayerBar.tscn" id="4_8jwx5"]
@@ -1477,7 +1478,10 @@ size = Vector2(32, 790)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m3iel"]
 size = Vector2(508, 20)
 
+[sub_resource type="SystemFont" id="SystemFont_lm8g2"]
+
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_a61md")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
@@ -1542,3 +1546,21 @@ polygon = PackedVector2Array(-79, -2, -80, 49, 78, 49, 79, 1, 63, -25, 30, -43, 
 position = Vector2(16, 375)
 collision_layer = 2
 collision_mask = 2
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 62.0
+offset_top = 238.0
+offset_right = 381.0
+offset_bottom = 390.0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = SubResource("SystemFont_lm8g2")
+theme_override_font_sizes/font_size = 59
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1

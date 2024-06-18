@@ -1478,6 +1478,8 @@ format = 2
 layer_0/tile_data = PackedInt32Array(65532, 524289, 2, 65533, 589825, 2, 65534, 524289, 2, 65535, 589825, 2, 0, 524289, 2, 1, 589825, 2, 2, 524289, 2, 3, 589825, 2)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["PlayerBar"]]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["PlayerBar"]]
 position = Vector2(0, 16.5)
