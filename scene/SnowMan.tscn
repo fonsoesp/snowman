@@ -1,11 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://pugj2sce62mc"]
+[gd_scene load_steps=14 format=3 uid="uid://pugj2sce62mc"]
 
 [ext_resource type="Script" path="res://script/snowMan.gd" id="1_14np7"]
 [ext_resource type="Texture2D" uid="uid://e1wt5iehda18" path="res://assets/snowman.png" id="1_crti4"]
+[ext_resource type="Texture2D" uid="uid://dm071xp412rjv" path="res://assets/snowman-death-1.png" id="3_ucx5v"]
+[ext_resource type="Texture2D" uid="uid://dr8m56skt6nul" path="res://assets/snowman-death-2.png" id="4_5pcy0"]
+[ext_resource type="Texture2D" uid="uid://b5v0bk3pbqvr4" path="res://assets/snowman-death-3.png" id="5_tpt2f"]
+[ext_resource type="Texture2D" uid="uid://c106f12ugyvrq" path="res://assets/snowman-death-4.png" id="6_anjuf"]
+[ext_resource type="Texture2D" uid="uid://w8jwtunikq80" path="res://assets/snowman-death-5.png" id="7_wdfry"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xgeqb"]
 friction = 0.0
 bounce = 0.5
+
+[sub_resource type="Animation" id="Animation_arim3"]
+resource_name = "death"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [ExtResource("3_ucx5v"), ExtResource("4_5pcy0"), ExtResource("5_tpt2f"), ExtResource("6_anjuf"), ExtResource("7_wdfry")]
+}
+
+[sub_resource type="Animation" id="Animation_p76pt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_crti4")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ftgpy"]
+_data = {
+"RESET": SubResource("Animation_p76pt"),
+"death": SubResource("Animation_arim3")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nc5k6"]
 radius = 21.095
@@ -25,6 +67,11 @@ script = ExtResource("1_14np7")
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Snowman"]]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_crti4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ftgpy")
+}
 
 [node name="CollisionShape2D_body" type="CollisionShape2D" parent="." groups=["Snowman"]]
 position = Vector2(1, 13)

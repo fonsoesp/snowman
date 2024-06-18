@@ -1565,11 +1565,11 @@ vertical_alignment = 1
 
 [node name="WinLabel" type="Label" parent="."]
 visible = false
-offset_left = 124.0
-offset_top = 476.0
-offset_right = 443.0
-offset_bottom = 628.0
-theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+offset_left = 60.0
+offset_top = 259.0
+offset_right = 379.0
+offset_bottom = 411.0
+theme_override_colors/font_color = Color(0.174282, 0.625215, 0.268374, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 4
@@ -1577,6 +1577,6 @@ theme_override_constants/shadow_offset_y = 4
 theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = SubResource("SystemFont_lm8g2")
 theme_override_font_sizes/font_size = 59
-text = "Win!"
+text = "You Win!"
 horizontal_alignment = 1
 vertical_alignment = 1
