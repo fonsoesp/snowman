@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://m13qs6em321o"]
+[gd_scene load_steps=14 format=3 uid="uid://m13qs6em321o"]
 
 [ext_resource type="Texture2D" uid="uid://c5vvm8rnfatlo" path="res://assets/kenney_platformer-art-pixel-redux/Tilemap/tilemap_packed.png" id="1_4jtbv"]
 [ext_resource type="PackedScene" uid="uid://pugj2sce62mc" path="res://scene/SnowMan.tscn" id="2_2x2ci"]
 [ext_resource type="PackedScene" uid="uid://dcoedetvdauqm" path="res://scene/Mountain.tscn" id="3_oj7eb"]
 [ext_resource type="PackedScene" uid="uid://dljsuasfijoii" path="res://scene/PlayerBar.tscn" id="4_8jwx5"]
 [ext_resource type="PackedScene" uid="uid://bihpuyqlvrfpe" path="res://scene/Sol.tscn" id="5_nhjc7"]
+[ext_resource type="PackedScene" uid="uid://bqrn1jtw1mfti" path="res://scene/Rayo.tscn" id="6_fj2u8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4yawj"]
 texture = ExtResource("1_4jtbv")
@@ -1580,3 +1581,6 @@ theme_override_font_sizes/font_size = 59
 text = "You Win!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="rayo" parent="." instance=ExtResource("6_fj2u8")]
+position = Vector2(20, 379)

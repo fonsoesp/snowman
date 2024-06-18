@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqrn1jtw1mfti"]
+
+[ext_resource type="Script" path="res://script/rayo.gd" id="1_qon0j"]
+[ext_resource type="Texture2D" uid="uid://dm0yiabedfwno" path="res://assets/rayo2.png" id="2_52w2e"]
+
+[node name="rayo" type="Node2D"]
+
+[node name="Rayo" type="CharacterBody2D" parent="." groups=["Enemigo"]]
+script = ExtResource("1_qon0j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Rayo"]
+position = Vector2(6, 1)
+polygon = PackedVector2Array(-11, -2, 10, -1, -11, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Rayo"]
+position = Vector2(4.5, -1.37502)
+scale = Vector2(0.125731, 0.110833)
+texture = ExtResource("2_52w2e")

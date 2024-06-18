@@ -9,8 +9,22 @@
 [ext_resource type="Texture2D" uid="uid://w8jwtunikq80" path="res://assets/snowman-death-5.png" id="7_wdfry"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xgeqb"]
-friction = 0.0
 bounce = 0.5
+
+[sub_resource type="Animation" id="Animation_p76pt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_crti4")]
+}
 
 [sub_resource type="Animation" id="Animation_arim3"]
 resource_name = "death"
@@ -26,21 +40,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [ExtResource("3_ucx5v"), ExtResource("4_5pcy0"), ExtResource("5_tpt2f"), ExtResource("6_anjuf"), ExtResource("7_wdfry")]
-}
-
-[sub_resource type="Animation" id="Animation_p76pt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_crti4")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ftgpy"]

@@ -37,6 +37,3 @@ func _win():
 
 func _reset_level():
 	get_tree().reload_current_scene()
-
-
-

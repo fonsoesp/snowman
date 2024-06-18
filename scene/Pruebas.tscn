@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddye5pkwdya8d"]
+[gd_scene load_steps=7 format=3 uid="uid://ddye5pkwdya8d"]
 
 [ext_resource type="PackedScene" uid="uid://pugj2sce62mc" path="res://scene/SnowMan.tscn" id="1_nwaeb"]
 [ext_resource type="Script" path="res://script/playerBar.gd" id="2_fv80o"]
 [ext_resource type="Texture2D" uid="uid://cqckmnrb1yhhk" path="res://assets/magma.png" id="2_jrvjl"]
+[ext_resource type="PackedScene" uid="uid://bqrn1jtw1mfti" path="res://scene/Rayo.tscn" id="4_yeimj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xykvg"]
 size = Vector2(474, 20)
@@ -32,5 +33,7 @@ texture = ExtResource("2_jrvjl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-363, 308)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8xhnk")
+
+[node name="rayo" parent="." instance=ExtResource("4_yeimj")]
+position = Vector2(100, 551)
