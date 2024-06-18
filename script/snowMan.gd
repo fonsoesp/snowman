@@ -24,7 +24,9 @@ func _game_over():
 	$"../GameOverLabel".visible = true
 	dead = true
 	$Sprite2D/AnimationPlayer.play("death")
+	setTimer()
 	
+func setTimer():
 	var timer = Timer.new()
 	timer.wait_time = reset_delay
 	timer.one_shot = true
@@ -34,6 +36,7 @@ func _game_over():
 
 func _win():
 	$"../WinLabel".visible = true;
+	setTimer()
 
 func _reset_level():
 	get_tree().reload_current_scene()
