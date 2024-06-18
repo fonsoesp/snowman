@@ -10,10 +10,12 @@ func _ready():
 	
 func _physics_process(delta):
 	velocity = Vector2(speed, 0)
-	var collision = move_and_slide()
-	
+	var collision = move_and_collide(velocity * delta)
 	if collision:
-		_on_collision()
+		if collision.get_collider().name == "SnowMan":
+			collision.get_collider()._game_over();
+		else:
+			_on_collision()
 		
 func _on_collision():
 	position = original_position
